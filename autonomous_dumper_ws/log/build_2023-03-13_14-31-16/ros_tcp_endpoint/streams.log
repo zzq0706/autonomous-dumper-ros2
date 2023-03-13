@@ -1,0 +1,74 @@
+[6.551s] Invoking command in '/home/zzq/autonomous_dumper/autonomous_dumper_ws/src/ROS-TCP-Endpoint-main-ros2': PYTHONPATH=/home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/prefix_override:/home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/ros_tcp_endpoint build --build-base /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build install --record /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/install.log --install-scripts $base/lib/ros_tcp_endpoint --single-version-externally-managed
+[7.212s] /home/zzq/.local/lib/python3.8/site-packages/setuptools/dist.py:757: UserWarning: Usage of dash-separated 'script-dir' will not be supported in future versions. Please use the underscore name 'script_dir' instead
+[7.212s]   warnings.warn(
+[8.228s] running egg_info
+[8.229s] creating ../../build/ros_tcp_endpoint/ros_tcp_endpoint.egg-info
+[8.387s] writing ../../build/ros_tcp_endpoint/ros_tcp_endpoint.egg-info/PKG-INFO
+[8.471s] writing dependency_links to ../../build/ros_tcp_endpoint/ros_tcp_endpoint.egg-info/dependency_links.txt
+[8.730s] writing entry points to ../../build/ros_tcp_endpoint/ros_tcp_endpoint.egg-info/entry_points.txt
+[8.914s] writing requirements to ../../build/ros_tcp_endpoint/ros_tcp_endpoint.egg-info/requires.txt
+[8.998s] writing top-level names to ../../build/ros_tcp_endpoint/ros_tcp_endpoint.egg-info/top_level.txt
+[8.999s] writing manifest file '../../build/ros_tcp_endpoint/ros_tcp_endpoint.egg-info/SOURCES.txt'
+[9.138s] reading manifest file '../../build/ros_tcp_endpoint/ros_tcp_endpoint.egg-info/SOURCES.txt'
+[9.138s] adding license file 'LICENSE'
+[9.139s] writing manifest file '../../build/ros_tcp_endpoint/ros_tcp_endpoint.egg-info/SOURCES.txt'
+[9.140s] running build
+[9.140s] running build_py
+[9.140s] creating /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build
+[9.140s] creating /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib
+[9.141s] creating /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint
+[9.141s] copying ros_tcp_endpoint/__init__.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint
+[9.142s] copying ros_tcp_endpoint/default_server_endpoint.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint
+[9.142s] copying ros_tcp_endpoint/subscriber.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint
+[9.142s] copying ros_tcp_endpoint/service.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint
+[9.142s] copying ros_tcp_endpoint/client.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint
+[9.143s] copying ros_tcp_endpoint/communication.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint
+[9.143s] copying ros_tcp_endpoint/thread_pauser.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint
+[9.143s] copying ros_tcp_endpoint/publisher.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint
+[9.143s] copying ros_tcp_endpoint/tcp_sender.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint
+[9.143s] copying ros_tcp_endpoint/exceptions.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint
+[9.144s] copying ros_tcp_endpoint/server.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint
+[9.144s] copying ros_tcp_endpoint/unity_service.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint
+[9.144s] running install
+[9.184s] /home/zzq/.local/lib/python3.8/site-packages/setuptools/command/install.py:34: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[9.184s]   warnings.warn(
+[9.192s] running install_lib
+[9.299s] creating /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint
+[9.300s] copying /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint/__init__.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint
+[9.300s] copying /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint/default_server_endpoint.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint
+[9.300s] copying /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint/subscriber.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint
+[9.300s] copying /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint/service.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint
+[9.300s] copying /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint/client.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint
+[9.301s] copying /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint/communication.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint
+[9.301s] copying /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint/thread_pauser.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint
+[9.301s] copying /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint/publisher.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint
+[9.301s] copying /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint/tcp_sender.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint
+[9.301s] copying /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint/exceptions.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint
+[9.301s] copying /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint/server.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint
+[9.301s] copying /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build/lib/ros_tcp_endpoint/unity_service.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint
+[9.302s] byte-compiling /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint/__init__.py to __init__.cpython-38.pyc
+[9.302s] byte-compiling /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint/default_server_endpoint.py to default_server_endpoint.cpython-38.pyc
+[9.303s] byte-compiling /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint/subscriber.py to subscriber.cpython-38.pyc
+[9.304s] byte-compiling /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint/service.py to service.cpython-38.pyc
+[9.304s] byte-compiling /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint/client.py to client.cpython-38.pyc
+[9.306s] byte-compiling /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint/communication.py to communication.cpython-38.pyc
+[9.306s] byte-compiling /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint/thread_pauser.py to thread_pauser.cpython-38.pyc
+[9.307s] byte-compiling /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint/publisher.py to publisher.cpython-38.pyc
+[9.307s] byte-compiling /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint/tcp_sender.py to tcp_sender.cpython-38.pyc
+[9.309s] byte-compiling /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint/exceptions.py to exceptions.cpython-38.pyc
+[9.310s] byte-compiling /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint/server.py to server.cpython-38.pyc
+[9.312s] byte-compiling /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint/unity_service.py to unity_service.cpython-38.pyc
+[9.313s] running install_data
+[9.337s] creating /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/share/ament_index
+[9.338s] creating /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/share/ament_index/resource_index
+[9.338s] creating /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/share/ament_index/resource_index/packages
+[9.338s] copying resource/ros_tcp_endpoint -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/share/ament_index/resource_index/packages
+[9.338s] copying package.xml -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/share/ros_tcp_endpoint
+[9.338s] creating /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/share/ros_tcp_endpoint/launch
+[9.338s] copying launch/endpoint.py -> /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/share/ros_tcp_endpoint/launch
+[9.338s] running install_egg_info
+[9.447s] Copying ../../build/ros_tcp_endpoint/ros_tcp_endpoint.egg-info to /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages/ros_tcp_endpoint-0.0.1-py3.8.egg-info
+[9.449s] running install_scripts
+[9.742s] Installing default_server_endpoint script to /home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/ros_tcp_endpoint
+[9.742s] writing list of installed files to '/home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/install.log'
+[9.806s] Invoked command in '/home/zzq/autonomous_dumper/autonomous_dumper_ws/src/ROS-TCP-Endpoint-main-ros2' returned '0': PYTHONPATH=/home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/prefix_override:/home/zzq/autonomous_dumper/autonomous_dumper_ws/install/ros_tcp_endpoint/lib/python3.8/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/ros_tcp_endpoint build --build-base /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/build install --record /home/zzq/autonomous_dumper/autonomous_dumper_ws/build/ros_tcp_endpoint/install.log --install-scripts $base/lib/ros_tcp_endpoint --single-version-externally-managed
