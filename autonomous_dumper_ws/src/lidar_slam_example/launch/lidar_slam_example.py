@@ -30,6 +30,10 @@ def generate_launch_description():
 		Node(
 		package='differential_drive_controller',
 		executable='differential_drive_controller',
+		parameters=[
+		{'wheel_distance': 1.865},
+		{'track_radius': 0.3}
+		]
 		),
 
         IncludeLaunchDescription(
