@@ -21,7 +21,7 @@ private:
     double v = msg->linear.x;
     double w = msg->angular.z;
 
-    double left_crawler_speed_target = v - w * 0.9325 // 0.9325 is the half of the wheel distance in unity
+    double left_crawler_speed_target = v - w * 0.9325; // 0.9325 is the half of the wheel distance in unity
     double right_crawler_speed_target = v + w * 0.9325;
 
     // convert to track speed in unity
