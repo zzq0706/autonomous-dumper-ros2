@@ -52,7 +52,7 @@ private:
   double wheel_distance, track_radius;
   
   // Set speed limits
-  const double max_linear_speed_ = 3.0;
+  const double max_linear_speed_ = 2.0;
   const double max_angular_speed_ = 1.0;
   
   rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_sub_;
