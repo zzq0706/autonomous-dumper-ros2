@@ -57,8 +57,8 @@ def generate_launch_description():
                     ('scan', '/scan')],
         parameters= [
 		{'scan_time': 0.033},
-		{'range_min': 0.45},
-		{'range_max': 50.0},
+		{'range_min': 1.0},
+		{'range_max': 30.0},
 		{'output_frame': 'depth_camera'},
 		{'scan_height': 1}
 		]
