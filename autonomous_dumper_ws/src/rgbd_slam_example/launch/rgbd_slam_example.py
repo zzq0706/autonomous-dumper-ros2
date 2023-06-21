@@ -9,12 +9,12 @@ from launch_ros.substitutions import FindPackageShare
 
 
 def generate_launch_description():
-    package_name = 'lidar_slam_example'
+    package_name = 'rgbd_slam_example'
     package_dir = get_package_share_directory(package_name)
     
-    nav2_params_file = LaunchConfiguration('params_file', default=os.path.join(package_dir, 'nav2_params.yaml'))
+    nav2_params_file = LaunchConfiguration('params_file', default=os.path.join(package_dir, 'config', 'nav2_params.yaml'))
     #nav2_params_file = PathJoinSubstitution([FindPackageShare(package_name), 'nav2_params.yaml'])
-    slam_toolbox_params_file = LaunchConfiguration('slam_params_file', default=os.path.join(package_dir, 'mapper_params_online_async.yaml'))
+    slam_toolbox_params_file = LaunchConfiguration('slam_params_file', default=os.path.join(package_dir, 'config', 'mapper_params_online_async.yaml'))
     
 
     return LaunchDescription({
@@ -30,7 +30,7 @@ def generate_launch_description():
             package='rviz2',
             executable='rviz2',
             output='screen',
-            arguments=['-d', os.path.join(package_dir, 'nav2_unity.rviz')],
+            arguments=['-d', os.path.join(package_dir, 'rviz', 'nav2_unity.rviz')],
             parameters=[{'use_sim_time':True}]
         ),
         
@@ -42,6 +42,27 @@ def generate_launch_description():
 		{'track_radius': 0.3}
 		]
 		),
+		
+		Node(
+		package='camera_tools',
+		executable='camera_info_pub',
+		),
+		
+		Node(
+        package='depthimage_to_laserscan',
+        executable='depthimage_to_laserscan_node',
+        name='depthimage_to_laserscan_node',
+        remappings=[('depth','/depth_image'),
+                    ('depth_camera_info', '/camera_info'),
+                    ('scan', '/scan')],
+        parameters= [
+		{'scan_time': 0.033},
+		{'range_min': 0.45},
+		{'range_max': 50.0},
+		{'output_frame': 'depth_camera'},
+		{'scan_height': 1}
+		]
+        ),
 
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
