@@ -101,9 +101,9 @@ def generate_launch_description():
             remappings=remappings
             ),
 
-        Node(
-            package='rtabmap_viz', executable='rtabmap_viz', output='screen',
-            parameters=[parameters],
-            remappings=remappings
-            ),
+        #Node(
+            #package='rtabmap_viz', executable='rtabmap_viz', output='screen',
+            #parameters=[parameters],
+            #remappings=remappings
+            #),
     ])

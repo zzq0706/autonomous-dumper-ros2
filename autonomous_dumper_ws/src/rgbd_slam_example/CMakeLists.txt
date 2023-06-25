@@ -22,6 +22,10 @@ find_package(nav_msgs REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
+
+add_executable(fake_odom_pub src/fake_odom_pub.cpp)
+ament_target_dependencies(fake_odom_pub rclcpp nav_msgs tf2_ros geometry_msgs)
 
 ################################################################################
 # Build
@@ -32,6 +36,7 @@ set(dependencies
   "rclcpp"
   "sensor_msgs"
   "tf2"
+  "tf2_ros"
 )
 
 ################################################################################
@@ -53,6 +58,10 @@ install(
   launch/rtab_mapping_rgbd.launch.py
   DESTINATION lib/${PROJECT_NAME}
 )
+
+install(TARGETS
+  fake_odom_pub
+  DESTINATION lib/${PROJECT_NAME})
 
 # uncomment the following section in order to fill in
 # further dependencies manually.
@@ -78,5 +87,6 @@ ament_export_dependencies(nav_msgs)
 ament_export_dependencies(rclcpp)
 ament_export_dependencies(sensor_msgs)
 ament_export_dependencies(tf2)
+ament_export_dependencies(tf2_ros)
 
 ament_package()
