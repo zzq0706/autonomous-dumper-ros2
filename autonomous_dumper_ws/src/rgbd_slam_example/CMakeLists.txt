@@ -49,6 +49,8 @@ install(
 install(
   PROGRAMS
   launch/rgbd_slam_example.py
+  launch/point_cloud_xyz.launch.py
+  launch/rtab_mapping_rgbd.launch.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

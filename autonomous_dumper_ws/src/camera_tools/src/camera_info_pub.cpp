@@ -16,7 +16,7 @@ public:
 	this->get_parameter<std::string>("camera_info_topic", camera_info_topic_);
 
     // Set the field of view (fov_) parameter
-    this->declare_parameter<double>("field_of_view", 90);
+    this->declare_parameter<double>("field_of_view", 70);
     this->get_parameter("field_of_view", fov_);
 
     publisher_ = create_publisher<sensor_msgs::msg::CameraInfo>(camera_info_topic_, 10);
