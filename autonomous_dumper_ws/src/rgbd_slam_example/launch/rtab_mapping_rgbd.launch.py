@@ -1,22 +1,3 @@
-# Requirements:
-#   Install Turtlebot3 packages
-#   Modify turtlebot3_waffle SDF:
-#     1) Edit /opt/ros/$ROS_DISTRO/share/turtlebot3_gazebo/models/turtlebot3_waffle/model.sdf
-#     2) Add
-#          <joint name="camera_rgb_optical_joint" type="fixed">
-#            <parent>camera_rgb_frame</parent>
-#            <child>camera_rgb_optical_frame</child>
-#            <pose>0 0 0 -1.57079632679 0 -1.57079632679</pose>
-#            <axis>
-#              <xyz>0 0 1</xyz>
-#            </axis>
-#          </joint> 
-#     3) Rename <link name="camera_rgb_frame"> to <link name="camera_rgb_optical_frame">
-#     4) Add <link name="camera_rgb_frame"/>
-#     5) Change <sensor name="camera" type="camera"> to <sensor name="camera" type="depth">
-#     6) Change image width/height from 1920x1080 to 640x480
-#     7) Note that we can increase min scan range from 0.12 to 0.2 to avoid having scans 
-#        hitting the robot itself
 # Example:
 #   $ export TURTLEBOT3_MODEL=waffle
 #   $ ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
@@ -30,25 +11,30 @@
 #   Navigation (install nav2_bringup package):
 #     $ ros2 launch nav2_bringup navigation_launch.py use_sim_time:=True
 #     $ ros2 launch nav2_bringup rviz_launch.py
-#
-#   Teleop:
-#     $ ros2 run turtlebot3_teleop teleop_keyboard
 
+
+import os
 from launch import LaunchDescription
+from launch.actions import IncludeLaunchDescription
 from launch.actions import DeclareLaunchArgument, SetEnvironmentVariable
 from launch.substitutions import LaunchConfiguration
 from launch.conditions import IfCondition, UnlessCondition
 from launch_ros.actions import Node
+from ament_index_python.packages import get_package_share_directory
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 
 def generate_launch_description():
 
+    package_name = 'rgbd_slam_example'
+    package_dir = get_package_share_directory(package_name)
+    nav2_params_file = LaunchConfiguration('params_file', default=os.path.join(package_dir, 'config', 'nav2_params_rgbd.yaml'))
     use_sim_time = LaunchConfiguration('use_sim_time')
     qos = LaunchConfiguration('qos')
     localization = LaunchConfiguration('localization')
 
     parameters={
           'frame_id':'base_link',
-          'visual_odometry':True,
+          'visual_odometry':False,
           'icp_odometry':False,
           'use_sim_time':use_sim_time,
           'subscribe_depth':True,
@@ -67,6 +53,61 @@ def generate_launch_description():
     
 
     return LaunchDescription([
+    	
+    	# launch tcp endpoint
+    	IncludeLaunchDescription(
+            PythonLaunchDescriptionSource(
+                os.path.join(get_package_share_directory('ros_tcp_endpoint'), 'launch', 'endpoint.py')
+            ),
+            launch_arguments={'ROS_IP': '192.168.2.122'}.items(),
+        ),
+        
+        Node(
+        package='rviz2',
+        executable='rviz2',
+        output='screen',
+        arguments=['-d', os.path.join(package_dir, 'rviz', 'nav2_unity.rviz')],
+        parameters=[{'use_sim_time':True}]
+        ),
+        
+        Node(
+		package='differential_drive_controller',
+		executable='differential_drive_controller',
+		parameters=[
+		{'wheel_distance': 1.865},
+		{'track_radius': 0.3}
+		]
+		),
+		
+		Node(
+		package='camera_tools',
+		executable='camera_info_pub',
+		parameters=[
+        {'name': 'image_topic', 'value': '/depth_image'},
+        {'name': 'camera_info_topic', 'value': '/camera_info'},
+        {'name': 'field_of_view', 'value': 70}
+		]
+		),
+		
+		Node(
+		package='rgbd_slam_example',
+		executable='fake_odom_pub',
+		),
+		
+		# transform depth image to base link
+        Node(
+		package='tf2_ros',
+		executable='static_transform_publisher',
+		arguments=['0', '0', '0', '-1.57', '0', '-1.57', 'depth_camera', 'depth_camera_trans'],  # 'x', 'y', 'z', 'yaw', 'pitch', 'roll', 'parent_frame', 'child_frame'
+		),
+		
+		# transform rgb image to base link
+        Node(
+		package='tf2_ros',
+		executable='static_transform_publisher',
+		arguments=['0', '0', '0', '-1.57', '0', '-1.57', 'rgb_camera', 'rgb_camera_trans'],  # 'x', 'y', 'z', 'yaw', 'pitch', 'roll', 'parent_frame', 'child_frame'
+		),
+
 
         # Launch arguments
         DeclareLaunchArgument(
@@ -101,9 +142,19 @@ def generate_launch_description():
             remappings=remappings
             ),
 
-        #Node(
-            #package='rtabmap_viz', executable='rtabmap_viz', output='screen',
-            #parameters=[parameters],
-            #remappings=remappings
-            #),
+        Node(
+            package='rtabmap_viz', executable='rtabmap_viz', output='screen',
+            parameters=[parameters],
+            remappings=remappings
+            ),
+            
+        IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            os.path.join(get_package_share_directory('nav2_bringup'), 'launch', 'navigation_launch.py')
+        ),
+        launch_arguments={
+            'use_sim_time': 'true',
+            'params_file': nav2_params_file
+        }.items()
+        ),
     ])

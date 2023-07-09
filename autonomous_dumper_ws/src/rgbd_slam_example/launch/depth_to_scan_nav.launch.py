@@ -43,11 +43,19 @@ def generate_launch_description():
 		]
 		),
 		
+		# transform depth image to base link
+        Node(
+		package='tf2_ros',
+		executable='static_transform_publisher',
+		arguments=['0', '0', '0', '-1.57', '0', '-1.57', 'depth_camera', 'depth_camera_trans'],  # 'x', 'y', 'z', 'yaw', 'pitch', 'roll', 'parent_frame', 'child_frame'
+		),
+		
 		Node(
 		package='camera_tools',
 		executable='camera_info_pub',
 		),
 		
+
 		Node(
         package='depthimage_to_laserscan',
         executable='depthimage_to_laserscan_node',
@@ -57,10 +65,10 @@ def generate_launch_description():
                     ('scan', '/scan')],
         parameters= [
 		{'scan_time': 0.033},
-		{'range_min': 1.0},
+		{'range_min': 2.0},
 		{'range_max': 30.0},
 		{'output_frame': 'depth_camera'},
-		{'scan_height': 1}
+		{'scan_height': 10}
 		]
         ),
 
