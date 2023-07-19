@@ -56,6 +56,9 @@ install(
   launch/depth_to_scan_nav.launch.py
   launch/point_cloud_xyz.launch.py
   launch/rtab_mapping_rgbd.launch.py
+  launch/lidar_rgbd_mapping.launch.py
+  launch/lidar_rgbd_navigation.launch.py
+  launch/scan_merger_test.launch.py
   DESTINATION lib/${PROJECT_NAME}
 )
 

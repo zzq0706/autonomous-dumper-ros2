@@ -1,18 +1,3 @@
-# Example:
-#   $ export TURTLEBOT3_MODEL=waffle
-#   $ ros2 launch turtlebot3_gazebo turtlebot3_world.launch.py
-#
-#   SLAM:
-#   $ ros2 launch rtabmap_demos turtlebot3_rgbd.launch.py
-#   OR
-#   $ ros2 launch rtabmap_launch rtabmap.launch.py visual_odometry:=false frame_id:=base_footprint odom_topic:=/odom args:="-d" use_sim_time:=true rgb_topic:=/camera/image_raw depth_topic:=/camera/depth/image_raw camera_info_topic:=/camera/camera_info approx_sync:=true qos:=2
-#   $ ros2 run topic_tools relay /rtabmap/map /map
-#
-#   Navigation (install nav2_bringup package):
-#     $ ros2 launch nav2_bringup navigation_launch.py use_sim_time:=True
-#     $ ros2 launch nav2_bringup rviz_launch.py
-
-
 import os
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
@@ -22,12 +7,15 @@ from launch.conditions import IfCondition, UnlessCondition
 from launch_ros.actions import Node
 from ament_index_python.packages import get_package_share_directory
 from launch.launch_description_sources import PythonLaunchDescriptionSource
+import launch_ros.actions
+import launch_ros.descriptions
 
 def generate_launch_description():
 
     package_name = 'rgbd_slam_example'
     package_dir = get_package_share_directory(package_name)
     nav2_params_file = LaunchConfiguration('params_file', default=os.path.join(package_dir, 'config', 'nav2_params_rgbd.yaml'))
+    db_path = LaunchConfiguration('db_path', default=os.path.join(package_dir, 'maps', 'rtabmap.db'))
     use_sim_time = LaunchConfiguration('use_sim_time')
     qos = LaunchConfiguration('qos')
     localization = LaunchConfiguration('localization')
@@ -35,23 +23,29 @@ def generate_launch_description():
     parameters={
           'frame_id':'base_link',
           'visual_odometry':False,
-          'icp_odometry':False,
+          'icp_odometry':True,
           'use_sim_time':use_sim_time,
           'subscribe_depth':True,
+          'subscribe_scan_cloud':True,
           'use_action_for_goal':True,
+          'RGBD/CreateOccupancyGrid':'true',
           'qos_image':qos,
           'qos_imu':qos,
+          'approx_sync':True,
           'Reg/Force3DoF':'true',
           'Optimizer/GravitySigma':'0', # Disable imu constraints (we are already in 2D)
           'Grid/RangeMax':'20.0',
           'Grid/CellSize':'0.10',
           'Grid/RayTracing':'true',
           'RGBD/LocalRadius':'15.0',
-          'Kp/RoiRatios':'0.0 0.0 0.1 0.2',
+          'Kp/RoiRatios':'0.0 0.0 0.2 0.2',
           'Optimizer/Strategy':'1',
-          'Mem/RehearsalSimilarity':'0.8',
+          #'Mem/RehearsalSimilarity':'0.8',
           'RGBD/OptimizeMaxError':'1.0',
-          'RGBD/CreateOccupancyGrid':'true',
+          #'subscribe_scan':True,
+          'Reg/Strategy':'2',
+          'RGBD/OptimizeFromGraphEnd':'false',
+          'database_path':db_path,          
     }
     
     
@@ -59,6 +53,8 @@ def generate_launch_description():
           ('rgb/image', '/rgb_image'),
           ('rgb/camera_info', '/camera_info'),
           ('depth/image', '/depth_image'),
+          ('scan_cloud', '/points'),
+          #('scan', '/scan'),
           ]
     
 
@@ -117,7 +113,26 @@ def generate_launch_description():
 		executable='static_transform_publisher',
 		arguments=['0', '0', '0', '-1.57', '0', '-1.57', 'rgb_camera', 'rgb_camera_trans'],  # 'x', 'y', 'z', 'yaw', 'pitch', 'roll', 'parent_frame', 'child_frame'
 		),
-
+		
+		# launch plugin through rclcpp_components container
+        launch_ros.actions.ComposableNodeContainer(
+            name='container',
+            namespace='',
+            package='rclcpp_components',
+            executable='component_container',
+            composable_node_descriptions=[
+                # Driver itself
+                launch_ros.descriptions.ComposableNode(
+                    package='depth_image_proc',
+                    plugin='depth_image_proc::PointCloudXyzNode',
+                    name='point_cloud_xyz_node',
+                    remappings=[('image_rect', '/depth_image'),
+                                ('camera_info', '/camera_info'),
+                                ('image', '/depth_image')],
+                ),
+            ],
+            output='screen',
+        ),
 
         # Launch arguments
         DeclareLaunchArgument(
@@ -129,7 +144,7 @@ def generate_launch_description():
             description='QoS used for input sensor topics'),
             
         DeclareLaunchArgument(
-            'localization', default_value='false',
+            'localization', default_value='true',
             description='Launch in localization mode.'),
 
         # Nodes to launch
@@ -152,11 +167,11 @@ def generate_launch_description():
             remappings=remappings
             ),
 
-        Node(
-            package='rtabmap_viz', executable='rtabmap_viz', output='screen',
-            parameters=[parameters],
-            remappings=remappings
-            ),
+        #Node(
+            #package='rtabmap_viz', executable='rtabmap_viz', output='screen',
+            #parameters=[parameters],
+            #remappings=remappings
+            #),
             
         IncludeLaunchDescription(
         PythonLaunchDescriptionSource(

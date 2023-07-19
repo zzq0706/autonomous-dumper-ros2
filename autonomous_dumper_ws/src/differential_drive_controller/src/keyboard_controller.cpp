@@ -34,6 +34,7 @@ public:
       case 'w':
         vel += 0.2;
         msg.linear.x = vel;
+        msg.angular.z = ang_vel;
         if (msg.linear.x > 1.0)
         {
           msg.linear.x = 1.0;
@@ -43,6 +44,7 @@ public:
       case 's':
         vel -= 0.2;
         msg.linear.x = vel;
+        msg.angular.z = ang_vel;
         if (msg.linear.x < -1.0)
         {
           msg.linear.x = -1.0;
@@ -51,25 +53,31 @@ public:
         break;
       case 'a':
         ang_vel += 0.1;
+        msg.linear.x = vel;
         msg.angular.z = ang_vel;
         if (msg.angular.z > 0.5)
         {
           msg.angular.z = 0.5;
         }
-        printw("current velocity is %f \n", ang_vel);
+        printw("current angular velocity is %f \n", ang_vel);
         break;
       case 'd':
         ang_vel -= 0.1;
+        msg.linear.x = vel;
         msg.angular.z = ang_vel;
         if (msg.angular.z < -0.5)
         {
           msg.angular.z = -0.5;
         }
-        printw("current velocity is %f \n", ang_vel);
+        printw("current angular velocity is %f \n", ang_vel);
         break;
       case 'r':
-        msg.linear.x = 0.0;
-        msg.angular.z = 0.0;
+        vel = 0.0;
+        ang_vel = 0.0;
+        msg.linear.x = vel;
+        msg.angular.z = ang_vel;
+        printw("current velocity is %f \n", vel);
+        printw("current angular velocity is %f \n", ang_vel);
         break;
       case 'q':
         endwin(); // End ncurses window
