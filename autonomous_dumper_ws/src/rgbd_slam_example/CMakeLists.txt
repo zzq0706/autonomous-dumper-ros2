@@ -55,7 +55,9 @@ install(
   PROGRAMS
   launch/depth_to_scan_nav.launch.py
   launch/point_cloud_xyz.launch.py
-  launch/rtab_mapping_rgbd.launch.py
+  launch/single_rgbd_mapping.launch.py
+  launch/fake_lidar_rgbd_mapping.launch.py
+  launch/rgbd_navigation.launch.py
   launch/lidar_rgbd_mapping.launch.py
   launch/lidar_rgbd_navigation.launch.py
   launch/scan_merger_test.launch.py

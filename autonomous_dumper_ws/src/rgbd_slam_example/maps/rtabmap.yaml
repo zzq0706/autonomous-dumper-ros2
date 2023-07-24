@@ -1,4 +1,4 @@
-image: construction_cite_map.pgm
+image: rtabmap.pgm
 resolution: 0.1
 origin: [-26.5494, -26.1954, 0.0]
 negate: 0

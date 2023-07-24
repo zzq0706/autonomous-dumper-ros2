@@ -15,6 +15,7 @@ def generate_launch_description():
     package_name = 'rgbd_slam_example'
     package_dir = get_package_share_directory(package_name)
     nav2_params_file = LaunchConfiguration('params_file', default=os.path.join(package_dir, 'config', 'nav2_params_rgbd.yaml'))
+    db_path = LaunchConfiguration('db_path', default=os.path.join(package_dir, 'maps', 'rtabmap.db'))
     use_sim_time = LaunchConfiguration('use_sim_time')
     qos = LaunchConfiguration('qos')
     localization = LaunchConfiguration('localization')
@@ -30,7 +31,7 @@ def generate_launch_description():
           'RGBD/CreateOccupancyGrid':'true',
           'qos_image':qos,
           'qos_imu':qos,
-          'approx_sync':True,
+          #'approx_sync':True,
           'Reg/Force3DoF':'true',
           'Optimizer/GravitySigma':'0', # Disable imu constraints (we are already in 2D)
           'Grid/RangeMax':'20.0',
@@ -41,11 +42,10 @@ def generate_launch_description():
           'Optimizer/Strategy':'1',
           #'Mem/RehearsalSimilarity':'0.8',
           'RGBD/OptimizeMaxError':'1.0',
-          'subscribe_scan':True,
+          #'subscribe_scan':True,
           'Reg/Strategy':'2',
           'RGBD/OptimizeFromGraphEnd':'false',
-          'Grid/Sensor':'2',
-          
+          'database_path':db_path,       
     }
     
     
@@ -65,7 +65,7 @@ def generate_launch_description():
             PythonLaunchDescriptionSource(
                 os.path.join(get_package_share_directory('ros_tcp_endpoint'), 'launch', 'endpoint.py')
             ),
-            launch_arguments={'ROS_IP': '192.168.2.122'}.items(),
+            launch_arguments={'ROS_IP': '192.168.2.123'}.items(),
         ),
         
         Node(
@@ -144,7 +144,7 @@ def generate_launch_description():
             description='QoS used for input sensor topics'),
             
         DeclareLaunchArgument(
-            'localization', default_value='false',
+            'localization', default_value='true',
             description='Launch in localization mode.'),
 
         # Nodes to launch

@@ -26,7 +26,8 @@ amcl:
     recovery_alpha_fast: 0.0
     recovery_alpha_slow: 0.0
     resample_interval: 1
-    robot_model_type: "differential"
+    #robot_model_type: "differential"
+    robot_model_type: "nav2_amcl::DifferentialMotionModel"
     save_pose_rate: 0.5
     sigma_hit: 0.2
     tf_broadcast: true
@@ -163,10 +164,10 @@ local_costmap:
       robot_base_frame: base_link
       use_sim_time: True
       rolling_window: true
-      width: 20
-      height: 20
+      width: 5
+      height: 5
       resolution: 0.1
-      robot_radius: 1.0
+      robot_radius: 1.2
       plugins: ["voxel_layer", "inflation_layer"]
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
@@ -181,13 +182,13 @@ local_costmap:
         z_voxels: 16
         max_obstacle_height: 2.0
         mark_threshold: 0
-        # observation_sources: scan
+        observation_sources: scan
         scan:
-          topic: /cloud_obstacles
+          topic: /scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
-          data_type: "PointCloud2"
+          data_type: "LaserScan"
       static_layer:
         map_subscribe_transient_local: True
       always_send_full_costmap: True
@@ -206,20 +207,20 @@ global_costmap:
       global_frame: map
       robot_base_frame: base_link
       use_sim_time: True
-      robot_radius: 1.0
+      robot_radius: 1.2
       resolution: 0.1
       track_unknown_space: true
       plugins: ["static_layer", "obstacle_layer", "inflation_layer"]
       obstacle_layer:
         plugin: "nav2_costmap_2d::ObstacleLayer"
         enabled: True
-        # observation_sources: scan
+        observation_sources: scan
         scan:
-          topic: /cloud_obstacles
+          topic: /scan
           max_obstacle_height: 2.0
           clearing: True
           marking: True
-          data_type: "PointCloud2"
+          data_type: "LaserScan"
       static_layer:
         plugin: "nav2_costmap_2d::StaticLayer"
         map_subscribe_transient_local: True
@@ -287,6 +288,12 @@ recoveries_server:
 robot_state_publisher:
   ros__parameters:
     use_sim_time: True
+ 
+   
+
+
+
+
  
    
 

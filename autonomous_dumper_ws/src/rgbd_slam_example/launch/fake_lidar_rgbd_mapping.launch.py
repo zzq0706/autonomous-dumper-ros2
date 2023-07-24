@@ -25,7 +25,7 @@ def generate_launch_description():
           'icp_odometry':True,
           'use_sim_time':use_sim_time,
           'subscribe_depth':True,
-          #'subscribe_scan_cloud':True,
+          'subscribe_scan_cloud':True,
           'use_action_for_goal':True,
           'RGBD/CreateOccupancyGrid':'true',
           'qos_image':qos,
@@ -41,10 +41,9 @@ def generate_launch_description():
           'Optimizer/Strategy':'1',
           #'Mem/RehearsalSimilarity':'0.8',
           'RGBD/OptimizeMaxError':'1.0',
-          'subscribe_scan':True,
+          #'subscribe_scan':True,
           'Reg/Strategy':'2',
           'RGBD/OptimizeFromGraphEnd':'false',
-          'Grid/Sensor':'2',
           
     }
     
@@ -167,11 +166,11 @@ def generate_launch_description():
             remappings=remappings
             ),
 
-        #Node(
-            #package='rtabmap_viz', executable='rtabmap_viz', output='screen',
-            #parameters=[parameters],
-            #remappings=remappings
-            #),
+        Node(
+            package='rtabmap_viz', executable='rtabmap_viz', output='screen',
+            parameters=[parameters],
+            remappings=remappings
+            ),
             
         IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
