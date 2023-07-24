@@ -64,7 +64,7 @@ def generate_launch_description():
             PythonLaunchDescriptionSource(
                 os.path.join(get_package_share_directory('ros_tcp_endpoint'), 'launch', 'endpoint.py')
             ),
-            launch_arguments={'ROS_IP': '192.168.2.122'}.items(),
+            launch_arguments={'ROS_IP': '192.168.2.123'}.items(),
         ),
         
         Node(

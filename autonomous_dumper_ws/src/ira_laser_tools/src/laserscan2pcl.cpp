@@ -93,7 +93,7 @@ void ScanToPCL::scanCallback(sensor_msgs::msg::LaserScan::SharedPtr scan)
 
     pcl_conversions::toPCL(tmpCloud2, clouds);
 
-    pcl::PCLPointCloud2::Ptr input_cloud = boost::make_shared<pcl::PCLPointCloud2>(clouds);
+    pcl::PCLPointCloud2::Ptr input_cloud = pcl::make_shared<pcl::PCLPointCloud2>(clouds);
 
     pcl::PCLPointCloud2::Ptr output_cloud(new pcl::PCLPointCloud2);
 

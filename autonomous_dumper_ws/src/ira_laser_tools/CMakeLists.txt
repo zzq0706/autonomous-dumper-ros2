@@ -45,7 +45,7 @@ set(dependencies
 # bugfix for g++-Warning
 #   "<command-line>:0:0: warning: missing whitespace after the macro name"
 remove_definitions(-DDISABLE_LIBUSB-1.0)
-add_definitions(-DBOOST_BIND_NO_PLACEHOLDERS)
+
 ###########
 ## Build ##
 ###########
@@ -65,24 +65,24 @@ target_include_directories(laserscan_virtualizer PUBLIC ${EIGEN_INCLUDE_DIRS})
 target_include_directories(laserscan_virtualizer PUBLIC ${PCL_INCLUDE_DIRS})
 target_link_libraries(laserscan_virtualizer ${PCL_LIBRARIES})
 
-add_executable(pcl_merger src/pcl_merger.cpp)
-ament_target_dependencies(pcl_merger ${dependencies})
-target_include_directories(pcl_merger PUBLIC ${EIGEN_INCLUDE_DIRS})
-target_include_directories(pcl_merger PUBLIC ${PCL_INCLUDE_DIRS})
-target_link_libraries(pcl_merger ${PCL_LIBRARIES})
-
 add_executable(laserscan2pcl src/laserscan2pcl.cpp)
 ament_target_dependencies(laserscan2pcl ${dependencies})
 target_include_directories(laserscan2pcl PUBLIC ${EIGEN_INCLUDE_DIRS})
 target_include_directories(laserscan2pcl PUBLIC ${PCL_INCLUDE_DIRS})
 target_link_libraries(laserscan2pcl ${PCL_LIBRARIES})
 
+add_executable(pcl_merger src/pcl_merger.cpp)
+ament_target_dependencies(pcl_merger ${dependencies})
+target_include_directories(pcl_merger PUBLIC ${EIGEN_INCLUDE_DIRS})
+target_include_directories(pcl_merger PUBLIC ${PCL_INCLUDE_DIRS})
+target_link_libraries(pcl_merger ${PCL_LIBRARIES})
+
 #############
 ## Install ##
 #############
 
 ## Mark executables and/or libraries for installation
-install(TARGETS laserscan_multi_merger laserscan_virtualizer pcl_merger laserscan2pcl
+install(TARGETS laserscan_multi_merger laserscan_virtualizer laserscan2pcl pcl_merger
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION lib/${PROJECT_NAME}

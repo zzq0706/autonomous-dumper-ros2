@@ -1,11 +1,10 @@
-#define BOOST_BIND_NO_PLACEHOLDERS
 #include <string.h>
 #include <vector>
 #include <Eigen/Dense>
 #include <geometry_msgs/msg/transform_stamped.hpp>
 #include <tf2_ros/transform_listener.h>
 #include <tf2_ros/buffer.h>
-#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 #include <laser_geometry/laser_geometry.hpp>
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>

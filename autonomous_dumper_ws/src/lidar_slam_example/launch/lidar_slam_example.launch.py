@@ -22,7 +22,7 @@ def generate_launch_description():
             PythonLaunchDescriptionSource(
                 os.path.join(get_package_share_directory('ros_tcp_endpoint'), 'launch', 'endpoint.py')
             ),
-            launch_arguments={'ROS_IP': '192.168.2.121'}.items(),
+            launch_arguments={'ROS_IP': '192.168.2.123'}.items(),
         ),
 
 
@@ -59,7 +59,7 @@ def generate_launch_description():
             ),
             launch_arguments={
                 'use_sim_time': 'true',
-                'params_file': slam_toolbox_params_file
+                'slam_params_file': slam_toolbox_params_file
             }.items()
         )
 

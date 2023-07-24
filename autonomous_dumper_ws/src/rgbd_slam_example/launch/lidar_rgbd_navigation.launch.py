@@ -42,6 +42,7 @@ def generate_launch_description():
             os.path.join(get_package_share_directory('nav2_bringup'), 'launch', 'localization_launch.py')
         ),
         launch_arguments={
+        	'map': map_dir,
             'use_sim_time': 'true',
             'params_file': param_dir
         }.items()
@@ -67,43 +68,42 @@ def generate_launch_description():
 
         Node(
             package='rviz2',
-            node_executable='rviz2',
-            node_name='rviz2',
+            executable='rviz2',
             arguments=['-d', rviz_config_dir],
             # arguments=['-d', os.path.join(package_dir, 'rviz', 'rgbd.rviz')],
             parameters=[{'use_sim_time': use_sim_time}],
             output='screen'),
             
         Node(
-	package='differential_drive_controller',
-	executable='differential_drive_controller',
-	parameters=[
-	{'wheel_distance': 1.865},
-	{'track_radius': 0.3}
-	]
-	),
+		package='differential_drive_controller',
+		executable='differential_drive_controller',
+		parameters=[
+		{'wheel_distance': 1.865},
+		{'track_radius': 0.3}
+		]
+		),
 		
-	Node(
-	package='camera_tools',
-	executable='camera_info_pub',
-	parameters=[
-	{'name': 'image_topic', 'value': '/depth_image'},
-	{'name': 'camera_info_topic', 'value': '/camera_info'},
-	{'name': 'field_of_view', 'value': 70}
-	]
-	),
+		Node(
+		package='camera_tools',
+		executable='camera_info_pub',
+		parameters=[
+		{'name': 'image_topic', 'value': '/depth_image'},
+		{'name': 'camera_info_topic', 'value': '/camera_info'},
+		{'name': 'field_of_view', 'value': 70}
+		]
+		),
 	
-	# transform depth image to base link
-	Node(
-	package='tf2_ros',
-	executable='static_transform_publisher',
-	arguments=['0', '0', '0', '-1.57', '0', '-1.57', 'depth_camera', 'depth_camera_trans'],  # 'x', 'y', 'z', 'yaw', 'pitch', 'roll', 'parent_frame', 'child_frame'
-	),
-	
-	# transform rgb image to base link
-	Node(
-	package='tf2_ros',
-	executable='static_transform_publisher',
-	arguments=['0', '0', '0', '-1.57', '0', '-1.57', 'rgb_camera', 'rgb_camera_trans'],  # 'x', 'y', 'z', 'yaw', 'pitch', 'roll', 'parent_frame', 'child_frame'
-	),
+		# transform depth image to base link
+		Node(
+		package='tf2_ros',
+		executable='static_transform_publisher',
+		arguments=['0', '0', '0', '-1.57', '0', '-1.57', 'depth_camera', 'depth_camera_trans'],  # 'x', 'y', 'z', 'yaw', 'pitch', 'roll', 'parent_frame', 'child_frame'
+		),
+		
+		# transform rgb image to base link
+		Node(
+		package='tf2_ros',
+		executable='static_transform_publisher',
+		arguments=['0', '0', '0', '-1.57', '0', '-1.57', 'rgb_camera', 'rgb_camera_trans'],  # 'x', 'y', 'z', 'yaw', 'pitch', 'roll', 'parent_frame', 'child_frame'
+		),
     ])

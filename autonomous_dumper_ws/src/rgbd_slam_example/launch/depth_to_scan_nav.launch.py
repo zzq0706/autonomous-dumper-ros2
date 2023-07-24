@@ -88,7 +88,7 @@ def generate_launch_description():
             ),
             launch_arguments={
                 'use_sim_time': 'true',
-                'params_file': slam_toolbox_params_file
+                'slam_params_file': slam_toolbox_params_file
             }.items()
         )
 
