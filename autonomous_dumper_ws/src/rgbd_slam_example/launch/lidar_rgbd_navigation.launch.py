@@ -17,7 +17,7 @@ def generate_launch_description():
     package_dir = get_package_share_directory(package_name)
     use_sim_time = LaunchConfiguration('use_sim_time', default='true')
     param_dir = LaunchConfiguration('params', default=os.path.join(package_dir, 'config', 'nav2_params_lidar_rgbd.yaml'))
-    map_dir = LaunchConfiguration('map', default=os.path.join(package_dir, 'maps', 'rtabmap.yaml'))
+    map_dir = LaunchConfiguration('map', default=os.path.join(package_dir, 'maps', 'map_rgbd.yaml'))
     nav2_launch_file_dir = os.path.join(get_package_share_directory('nav2_bringup'), 'launch')
     rviz_config_dir = os.path.join(get_package_share_directory('nav2_bringup'),'rviz','nav2_default_view.rviz')
     

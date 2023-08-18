@@ -22,7 +22,7 @@ def generate_launch_description():
     parameters={
           'frame_id':'base_link',
           'visual_odometry':False,
-          'icp_odometry':True,
+          'icp_odometry':False,
           'use_sim_time':use_sim_time,
           'subscribe_depth':True,
           #'subscribe_scan_cloud':True,
@@ -33,7 +33,7 @@ def generate_launch_description():
           'approx_sync':True,
           'Reg/Force3DoF':'true',
           'Optimizer/GravitySigma':'0', # Disable imu constraints (we are already in 2D)
-          'Grid/RangeMax':'20.0',
+          'Grid/RangeMax':'15.0',
           'Grid/CellSize':'0.10',
           'Grid/RayTracing':'true',
           'RGBD/LocalRadius':'15.0',
@@ -41,10 +41,10 @@ def generate_launch_description():
           'Optimizer/Strategy':'1',
           #'Mem/RehearsalSimilarity':'0.8',
           'RGBD/OptimizeMaxError':'1.0',
-          'subscribe_scan':True,
-          'Reg/Strategy':'2',
+          'subscribe_scan':False,
+          'Reg/Strategy':'1',
           'RGBD/OptimizeFromGraphEnd':'false',
-          'Grid/Sensor':'2',
+          'Grid/Sensor':'1',
           
     }
     

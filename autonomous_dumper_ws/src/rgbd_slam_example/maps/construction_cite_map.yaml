@@ -1,0 +1,7 @@
+image: construction_cite_map.pgm
+resolution: 0.1
+origin: [-26.5494, -26.1954, 0.0]
+negate: 0
+occupied_thresh: 0.5
+free_thresh: 0.196
+

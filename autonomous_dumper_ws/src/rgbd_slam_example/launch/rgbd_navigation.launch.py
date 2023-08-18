@@ -15,7 +15,7 @@ def generate_launch_description():
     package_name = 'rgbd_slam_example'
     package_dir = get_package_share_directory(package_name)
     nav2_params_file = LaunchConfiguration('params_file', default=os.path.join(package_dir, 'config', 'nav2_params_rgbd.yaml'))
-    db_path = LaunchConfiguration('db_path', default=os.path.join(package_dir, 'maps', 'rtabmap.db'))
+    db_path = LaunchConfiguration('db_path', default=os.path.join(package_dir, 'maps', 'rtabmap_rgbd.db'))
     use_sim_time = LaunchConfiguration('use_sim_time')
     qos = LaunchConfiguration('qos')
     localization = LaunchConfiguration('localization')
@@ -23,10 +23,10 @@ def generate_launch_description():
     parameters={
           'frame_id':'base_link',
           'visual_odometry':False,
-          'icp_odometry':True,
+          'icp_odometry':False,
           'use_sim_time':use_sim_time,
           'subscribe_depth':True,
-          'subscribe_scan_cloud':True,
+          'subscribe_scan_cloud':False,
           'use_action_for_goal':True,
           'RGBD/CreateOccupancyGrid':'true',
           'qos_image':qos,
@@ -42,8 +42,8 @@ def generate_launch_description():
           'Optimizer/Strategy':'1',
           #'Mem/RehearsalSimilarity':'0.8',
           'RGBD/OptimizeMaxError':'1.0',
-          #'subscribe_scan':True,
-          'Reg/Strategy':'2',
+          'subscribe_scan':False,
+          'Reg/Strategy':'1',
           'RGBD/OptimizeFromGraphEnd':'false',
           'database_path':db_path,       
     }
