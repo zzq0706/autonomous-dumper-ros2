@@ -35,16 +35,16 @@ def generate_launch_description():
           'Optimizer/GravitySigma':'0', # Disable imu constraints (we are already in 2D)
           'Grid/RangeMax':'15.0',
           'Grid/CellSize':'0.10',
-          'Grid/RayTracing':'true',
+          'Grid/RayTracing':'false',
           'RGBD/LocalRadius':'15.0',
           'Kp/RoiRatios':'0.0 0.0 0.2 0.2',
           'Optimizer/Strategy':'1',
           #'Mem/RehearsalSimilarity':'0.8',
           'RGBD/OptimizeMaxError':'1.0',
-          'subscribe_scan':False,
+          'subscribe_scan':True,
           'Reg/Strategy':'1',
           'RGBD/OptimizeFromGraphEnd':'false',
-          'Grid/Sensor':'1',
+          'Grid/Sensor':'2', # true for rgbd projection
           
     }
     
