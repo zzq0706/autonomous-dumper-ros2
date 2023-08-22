@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(differential_drive_controller)
+project(camera_tools)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -18,27 +18,17 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(geometry_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
-find_package(Curses REQUIRED)
-
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-add_executable(differential_drive_controller src/differential_drive_controller.cpp)
-ament_target_dependencies(differential_drive_controller rclcpp geometry_msgs std_msgs)
-
-add_executable(keyboard_controller src/keyboard_controller.cpp)
-ament_target_dependencies(keyboard_controller rclcpp geometry_msgs)
-target_link_libraries(keyboard_controller ${CURSES_LIBRARIES})
-
-install(TARGETS keyboard_controller
-  DESTINATION lib/${PROJECT_NAME})
-
+add_executable(camera_info_pub src/camera_info_pub.cpp)
+ament_target_dependencies(camera_info_pub rclcpp sensor_msgs std_msgs)
 
 install(TARGETS
-  differential_drive_controller
+  camera_info_pub
   DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)

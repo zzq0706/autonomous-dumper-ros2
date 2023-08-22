@@ -14,7 +14,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name), [
                                                 'rviz/nav2_unity.rviz',
-                                                'launch/lidar_slam_example.py',
+                                                'launch/lidar_slam_example.launch.py',
                                                 'config/nav2_params.yaml',
                                                 'config/mapper_params_online_async.yaml'
                                                 ])
