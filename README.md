@@ -23,21 +23,21 @@ This repo provides three different navigation examples: 2D LIDAR-based, RGBD cam
 
 For quickly launching 2D LIDAR-based navigation:  
 `$ ros2 launch lidar_slam_example lidar_slam_example.launch.py`
---------------------------
+
 For quickly launching RGBD camera-based navigation:  
 `$ ros2 launch rgbd_slam_example single_rgbd_mapping.launch.py`  
 or  
 `$ ros2 launch rgbd_slam_example fake_lidar_rgbd_mapping.launch.py` 
---------------------------
+
 For quickly launching hyrid navigation:  
 `$ ros2 launch rgbd_slam_example lidar_rgbd_mapping.launch.py` 
---------------------------
+
 if you have pre-built maps, you can start navigation directly based the pre-built map, just put the map file in the `rgbd_slam_example/maps` folder,
 there are already several maps to use, if you have new, don't forget to change the corresponding map name in launch file.
 
 For launching a RGBD camera-based navigation based on a pre-built map, map file in form of *.db is required, the provided *.db map file is too big and is saved in another shared folder, please ask `adrian.huber@tum.de` for the data base if one need it:  
 `$ ros2 launch rgbd_slam_example rgbd_navigation.launch.py`  
---------------------------
+
 For launching a hybrid navigation based on a pre-built map, map file in form of *.pgm and *.yaml is required:  
 `$ ros2 launch rgbd_slam_example lidar_rgbd_navigation.launch.py`  
 
